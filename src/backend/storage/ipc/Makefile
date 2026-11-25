@@ -9,6 +9,8 @@ top_builddir = ../../../..
 include $(top_builddir)/src/Makefile.global
 
 OBJS = \
+	autoindex_shmem.o \
+    autoindex_cost.o \
 	barrier.o \
 	dsm.o \
 	dsm_impl.o \

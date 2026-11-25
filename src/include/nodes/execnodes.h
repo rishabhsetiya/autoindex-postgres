@@ -1622,6 +1622,8 @@ typedef struct SeqScanState
 {
 	ScanState	ss;				/* its first field is NodeTag */
 	Size		pscan_len;		/* size of parallel heap scan descriptor */
+	void	   *autoindex_stats;	/* AutoIndexScanCollector */
+
 } SeqScanState;
 
 /* ----------------

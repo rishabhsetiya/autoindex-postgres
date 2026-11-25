@@ -78,6 +78,7 @@
 #include "replication/slotsync.h"
 #include "replication/syncrep.h"
 #include "storage/aio.h"
+#include "storage/autoindex_cost.h"
 #include "storage/bufmgr.h"
 #include "storage/bufpage.h"
 #include "storage/copydir.h"
@@ -3879,6 +3880,15 @@ struct config_int ConfigureNamesInt[] =
 
 struct config_real ConfigureNamesReal[] =
 {
+        {
+                {"autoindex.max_selectivity", PGC_SIGHUP, DEVELOPER_OPTIONS,
+                        gettext_noop("Maximum estimated selectivity for an automatic index candidate."),
+                        gettext_noop("Candidates above this selectivity are rejected.")
+                },
+                &autoindex_max_selectivity,
+                0.05, 0.0, 1.0,
+                NULL, NULL, NULL
+        },
 	{
 		{"seq_page_cost", PGC_USERSET, QUERY_TUNING_COST,
 			gettext_noop("Sets the planner's estimate of the cost of a "
